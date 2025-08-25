@@ -1,6 +1,6 @@
 package org.example.dailyQuestion;
 
-public class MaximumGain0723 {
+public class MaximumGain20250723 {
 
     public static int maximumGain(String s, int x, int y) {
         int res = 0, a = 0, b = 0;
