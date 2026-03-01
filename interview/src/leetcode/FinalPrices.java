@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.Stack;
+
 public class FinalPrices {
     public static void main(String[] args) {
 
@@ -20,5 +22,27 @@ public class FinalPrices {
             }
         }
         return prices;
+    }
+
+    public int[] finalPrices2(int[] prices) {
+        int length = prices.length;
+        Stack<Integer> stack = new Stack<>();
+        int[] res = new int[length];
+        for(int i = length - 1; i >= 0; i--){
+            // 获取原始价格
+            int price = prices[i];
+            while(!stack.isEmpty() && stack.peek() <= price){
+                // 如果栈不为空，栈顶元素小于当前的价格，弹出栈顶元素
+                res[i] = stack.pop();
+            }
+            if (stack.isEmpty()){
+                // 如果i位置的价格，在右侧有小于price[i]的最靠近它的就是stack的栈顶元素
+                res[i] = price - stack.peek();
+            } else {
+                res[i] = price;
+            }
+            stack.push(i);
+        }
+        return res;
     }
 }
